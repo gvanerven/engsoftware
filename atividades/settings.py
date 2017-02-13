@@ -29,11 +29,13 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    'commons.apps.CommonsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'mcritica.apps.McriticaConfig',
     # Disable Django's own staticfiles handling in favour of WhiteNoise, for
     # greater consistency between gunicorn and `./manage.py runserver`. See:
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
