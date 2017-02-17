@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>CRUD Básico</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap theme -->
+    <link href="/static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- SBAdmin2 theme -->
+    <link href="/static/vendor/sbadmin2/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <!--<link href="/static/vendor/metisMenu/metisMenu.css" rel="stylesheet">-->
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/static/bootstrap/extra/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/system.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/static/bootstrap/extra/html5shiv.min.js"></script>
+
+    <script src="/static/bootstrap/extra/respond.min.js"></script>
+    <!--[endif]-->
+
+
+
+    <link href="/static/js/datatable/jquery.dataTables1.10.12.bootstrap.min.css" rel="stylesheet">
+    <link href="/static/js/datatable/plugins/responsive.dataTables.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Filmes</div>
+        <div class="panel-body">
+            <table id="filmes" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nome do filme</th>
+                        <th>Categoria</th>
+                        <th>Avaliação</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery/jquery1.12.4.min.js"></script>
+
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+    <!--<script src="/static/polls/bootstrap/extra/docs.min.js"></script>-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/static/bootstrap/extra/ie10-viewport-bug-workaround.js"></script>
+
+    <script src="/static/js/jquery-blockui/jquery.blockui.js"></script>
+
+    <!-- SBAdmin2 js -->
+    <!--<script src="/static/vendor/sbadmin2/js/sb-admin-2.js"></script>-->
+
+    <!-- MetisMenu js -->
+    <!--<script src="/static/vendor/metisMenu/metisMenu.js"></script>-->
+
+    <!-- [endif]-->
+
+    <!-- variaveis globais de javascript -->
+    <script>
+        var mensagemAguarde = '<p><br/><h3><img src="/static/images/ajaxloading.gif" /> &nbsp;Aguarde ...</h3><br/></p>';
+        $.blockUI.defaults['message'] = mensagemAguarde;
+        $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI).ajaxError($.unblockUI);
+    </script>
+
+
+
+    <script src="/static/js/d3/d3.v4.js"></script>
+    <script src="/static/js/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/static/js/datatable/jquery.dataTables1.10.12.min.js"></script>
+    <script src="/static/js/datatable/jquery.dataTables1.10.12.bootstrap.min.js"></script>
+    <script src="/static/js/datatable/jquery.dataTables1.10.12.portuguese-brasil.js"></script>
+    <script src="/static/js/jquery.mask/1.14.9/jquery.mask.min.js"></script>
+    <script src="/static/js/datatable/plugins/dataTables.responsive.min.js"></script>
+    <script src="/static/js/grafico_barra.js"></script>
+    <script src="/static/js/utilitarios.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            iniciaAplicacao();
+        });
+
+
+        function iniciaAplicacao() {
+            //iniciando DataTable
+            $('#filmes').DataTable({
+                //"language": traducoesDatatable,
+                "order": [
+                    [0, "asc"]
+                ],
+                "paginate": true,
+                //"lengthMenu": menuPaginacaoPadrao(),
+                "iDisplayLength": 10,
+                "responsive": true,
+                "columnDefs": [{
+                    "targets": [0, 1, 2],
+                    "className": 'all'
+                }, {
+                    "targets": [],
+                    "className": 'none'
+                }, {
+                    "targets": [2],
+                    "render": function(data, type, row) {
+                        if (type == 'display') {
+                            return data;
+                        } else {
+                            return data;
+                        }
+                    },
+                }, ]
+            });
+            //
+        }
+    </script>
+</body>
+
+</html>
