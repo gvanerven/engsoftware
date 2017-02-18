@@ -1,4 +1,6 @@
-﻿CREATE TABLE crud_basico.categoria_filme
+﻿CREATE SCHEMA crud_basico;
+
+CREATE TABLE crud_basico.categoria_filme
 (
   id_categoria integer NOT NULL,
   ds_categoria character varying(30) NOT NULL,
