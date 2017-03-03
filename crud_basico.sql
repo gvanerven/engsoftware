@@ -23,3 +23,6 @@ CREATE TABLE crud_basico.filme
       REFERENCES crud_basico.categoria_filme (id_categoria) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
+
+CREATE SEQUENCE crud_basico.filmes START 1;
+CREATE SEQUENCE crud_basico.categorias START 5;
