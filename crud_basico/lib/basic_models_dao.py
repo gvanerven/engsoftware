@@ -1,23 +1,24 @@
 # coding=utf-8
 """DAO para os modelos."""
-from django.db import connections
 from crud_basico.lib.basic_models import Filme, CategoriaFilme
 
 __author__ = 'UnB - Engenharia de Software - GCGVE'
 
 class FilmeDAO():
     """DAO para a classe Filme."""
-    def __init__(self):
+    def __init__(self, conn):
         self.__erro = None
+        self.__conn = conn
 
     def get_cursor(self):
         """Retorna um cursor para consultas"""
         err = None
         cursor = None
         try:
-            cursor = connections['default'].cursor()
-        except(Exception, err):
+            cursor = self.__conn.cursor()
+        except(BaseException, err):
             self.__erro = str(err)
+            print(err)
 
         return cursor
 
@@ -52,7 +53,7 @@ class FilmeDAO():
                 filme.set_avaliacao(row.avaliacao)
             else:
                 filme = None
-        except(Exception, err):
+        except(BaseException, err):
             print("Falha buscando filme " + filme.get_titulo() + ": " + str(err))
         finally:
             self.close_cursor(cursor)
@@ -66,7 +67,7 @@ class FilmeDAO():
         if isinstance(filme, Filme):
             cursor = self.get_cursor()
             try:
-                id_filme = cursor.execute("SELECT nextval('crud_basico.filmes') as id_filme;").fetchone().id_filme
+                id_filme = cursor.execute("SELECT nextval('crud_basico.filmes') as id_filme").fetchone().id_filme
 
                 query = """
                         INSERT INTO crud_basico.filme (id_filme, titulo, fk_categoria_filme, avaliacao) VALUES ({}, '{}', {}, {})
@@ -77,7 +78,7 @@ class FilmeDAO():
                 if num_insert < 1:
                     id_filme = -1
                 cursor.commit()
-            except(Exception, err):
+            except(BaseException, err):
                 print("Falha inserindo filme " + filme.get_titulo() + ": " + str(err))
             finally:
                 self.close_cursor(cursor)
