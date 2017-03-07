@@ -58,3 +58,13 @@ class Filme:
 
     def set_avaliacao(self, avaliacao):
         self.__avaliacao = avaliacao
+
+    def __str__(self):
+        return str({"id_filme": self.__id_filme, "titulo": self.__titulo, \
+        "avaliacao": self.__avaliacao, \
+        "categoria": {"id_categoria": self.__categoria.get_id_categoria(), "categoria": self.__categoria.get_categoria()}})
+
+    def get_ditc(self):
+        return dict({"id_filme": self.__id_filme, "titulo": self.__titulo, \
+        "avaliacao": self.__avaliacao, \
+        "categoria": {"id_categoria": self.__categoria.get_id_categoria(), "categoria": self.__categoria.get_categoria()}})
