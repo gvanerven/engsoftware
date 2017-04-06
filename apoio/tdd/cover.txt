@@ -1,0 +1,3 @@
+"coverage run manage.py test webmath.tests -v2" 
+"coverage html" 
+"coverage html" 
